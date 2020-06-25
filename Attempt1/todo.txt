@@ -1,1 +1,14 @@
-1. Learn how to code
+Users 
+- Bio information
+- Current Clubs
+- Admin Class (child of user)
+- Voting method (poll object)
+
+Clubs
+- Membership (array, storage container)
+- create Polls
+
+Polls
+- allow for exclusivity in election
+- store election results
+- 
