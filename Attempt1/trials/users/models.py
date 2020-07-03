@@ -2,8 +2,8 @@ from django.db import models
 
 # Create your models here.
 class UserData(models.Model):
-    #userID =  models.BigIntegerField()
-    #picture = models.ImageField()
+    #userID =  models.AutoField(primary_key=True)
+    picture = models.FileField(upload_to= 'users/images', blank=True, null = True)
     name = models.CharField(max_length = 100)
     #email = models.EmailField(max_length = 254)
     location = models.CharField(max_length = 100)

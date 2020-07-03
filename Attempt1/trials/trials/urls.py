@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from users.views import user_detail_view
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('bio/<int:UserData_id>', user_detail_view),
 ]
