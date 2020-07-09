@@ -21,17 +21,5 @@ class UserData(models.Model):
     communication_group = models.BooleanField(null = True)
     calendar = models.BooleanField(null = True)
 
-class ClubData(models.Model):
-    #clubName = models.CharField(max_length = 100)
-    #clubID = models.BigIntegerField()
-    #picture = models.ImageField()
-    #color = models.
-    president = models.CharField(max_length = 100)
-    vpresident = models.CharField(max_length = 100)
-    treasurer = models.CharField(max_length = 100)
-    secretary = models.CharField(max_length = 100)
-
-class UserClub(models.Model):
-    user = models.ForeignKey('UserData', on_delete=models.CASCADE)
-    club = models.ForeignKey('ClubData', on_delete=models.CASCADE)
-    isAdmin = models.BooleanField(null = True)
+    def __str__(self):
+        return self.name

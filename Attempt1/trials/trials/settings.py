@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #own
+    'register',
     'users',
+    'profiles',
     'rest_framework',
 ]
 
@@ -89,7 +91,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -107,6 +108,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+#in settings.py
+AUTH_PROFILE_MODULE = 'profiles.UserProfile'
 
 
 # Internationalization
