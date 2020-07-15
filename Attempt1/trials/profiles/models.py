@@ -29,3 +29,55 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+
+class Group(models.Model):
+    name = models.CharField(max_length=128)
+    clubtag = models.CharField(max_length = 10, blank= True, null=True)
+    picture = models.FileField(upload_to= 'users/images', blank=True, null=True)
+    description = models.TextField(max_length=500, blank=True)
+    members = models.ManyToManyField(
+        Profile,
+        through='Membership',
+        through_fields=('group', 'profile')
+    )
+
+class Membership(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    leadership = models.BooleanField(default= False)
+    role = models.CharField(max_length = 20, blank=True)
+    inviter = models.ForeignKey(
+        Profile,
+        on_delete=models.CASCADE,
+        related_name="membership_invites",
+    )
+
+class Announcement(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    content = models.TextField(max_length=500, blank=True)
+    attachment = models.FileField(upload_to= 'users/images', blank=True, null=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+class Vote(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    candidate = models.ForeignKey("Candidate", on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+class Candidate(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # election = models.ForeignKey("Election", on_delete=models.CASCADE)
+    votes = models.ManyToManyField(User, related_name= 'candidate_user', blank=True, through=Vote)
+    #candidate platform
+    bio = models.TextField(max_length=500, blank=True)
+
+# class Position():
+#     description = models.TextField(max_length=500, blank=True)
+#     candidates = models.ManyToManyField(User, related_name= 'position_candidate', blank= True, through=Candidate)
+
+# class Election(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     group = models.ForeignKey(Group, on_delete=models.CASCADE)
+#     starttime = models.DateTimeField()
+#     endtime = models.DateTimeField()
+#     candidates = models.ManyToManyField(Candidate, related_name= 'election_candidate', blank= True, through=Candidate)
