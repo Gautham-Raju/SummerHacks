@@ -1,0 +1,30 @@
+Users 
+- Bio information
+- Current Clubs
+- Admin Class (child of user)
+- Voting method (poll object)
+
+Clubs
+- Membership (array, storage container)
+- create Polls
+
+Polls
+- allow for exclusivity in election
+- store election results
+- 
+
+class ClubData(models.Model):
+    #clubName = models.CharField(max_length = 100)
+    #clubID = models.BigIntegerField()
+    #picture = models.ImageField()
+    #color = models.
+    president = models.CharField(max_length = 100)
+    vpresident = models.CharField(max_length = 100)
+    treasurer = models.CharField(max_length = 100)
+    secretary = models.CharField(max_length = 100)
+
+class UserClub(models.Model):
+    user = models.ForeignKey('UserData', on_delete=models.CASCADE)
+    club = models.ForeignKey('ClubData', on_delete=models.CASCADE)
+    isAdmin = models.BooleanField(null = True)
+
