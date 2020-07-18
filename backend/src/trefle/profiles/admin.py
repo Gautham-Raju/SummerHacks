@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 
-from .models import Profile, Group, Membership, Candidate, Vote, Announcement
+from .models import Profile, Group, Membership, Candidate, Vote, Announcement, Position
 
 # Define an inline admin descriptor for Employee model
 # which acts a bit like a singleton
@@ -23,3 +23,4 @@ admin.site.register(Membership)
 admin.site.register(Candidate)
 admin.site.register(Vote)
 admin.site.register(Announcement)
+admin.site.register(Position)
