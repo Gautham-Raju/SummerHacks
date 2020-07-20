@@ -53,14 +53,14 @@ class Membership(models.Model):
     )
 
 class Announcement(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    speaker = models.ForeignKey(User, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
     content = models.TextField(max_length=500, blank=True)
     attachment = models.FileField(upload_to= 'users/images', blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
 class Vote(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    voter = models.ForeignKey(User, on_delete=models.CASCADE)
     candidate = models.ForeignKey("Candidate", on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
 
@@ -77,11 +77,8 @@ class Position(models.Model):
     description = models.TextField(max_length=500, blank=True)
     candidates = models.ManyToManyField(User, related_name= 'position_user', blank= True, through=Candidate)
 
-    def __str__(self):
-        return self.name
-
 class Election(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    host = models.ForeignKey(User, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
     starttime = models.DateTimeField()
     endtime = models.DateTimeField()
