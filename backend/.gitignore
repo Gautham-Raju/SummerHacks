@@ -2,3 +2,5 @@
 *.cfg
 bin/*
 lib/*
+*.pyc
+*.sqlite
