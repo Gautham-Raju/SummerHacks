@@ -65,8 +65,8 @@ class Vote(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
 class Candidate(models.Model):
-    runner = models.ForeignKey(User, on_delete=models.CASCADE)
-    # position = models.ForeignKey("Position", blank=True, null=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    #position = models.ForeignKey("Position", blank=True, null=True, on_delete=models.CASCADE)
     votes = models.ManyToManyField(User, related_name= 'candidate_user', blank=True, through=Vote)
     #candidate platform
     bio = models.TextField(max_length=500, blank=True)

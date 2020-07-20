@@ -3,4 +3,4 @@
 bin/*
 lib/*
 *.pyc
-*.sqlite
+*.sqlite3
