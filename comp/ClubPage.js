@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity, Dimensions, Image, Modal } from 'react-native';
 import Club from './club'
+import Feather from 'react-native-vector-icons/Feather';
+import Float from './float.js'
 
 const { width, height } = Dimensions.get('window')
 
@@ -8,58 +10,50 @@ function display({item}, {navigation}){
     const colorStyles = {
         backgroundColor: item.color
     };
-    if (item.key % 2 != 0){
     return(
     <View style = {[styles.card, colorStyles]}>
-        <View style = {styles.cardContent}>
+        <View>
         <TouchableOpacity onPress = {() => navigation.navigate('ClubDetail', item)}>
             <Club>
             <View style = {styles.component}>
-              <Image source={item.image} style={{ width: width * .15, height: width * .15, borderRadius: 15, alignSelf: 'center' }}>
-                </Image>
+                <Image source={item.image} style={[styles.image, {borderColor: item.color}]}></Image>
                 <Text style = {styles.text}>{item.text}</Text>
+                <Feather name = {item.user} size = {20} fontWeight = 'bold' color = '#094067'/>
             </View>
             </Club>
         </TouchableOpacity>
         </View>
     </View>)
-    }
-    else{
-    return(
-        <View style = {[styles.cardEnd, colorStyles]}>
-        <View style = {styles.cardContent}>
-            <TouchableOpacity onPress = {() => navigation.navigate('ClubDetail', {item, title: item.text})}>
-            <Club>
-                <View style = {styles.component}>
-                <Text style = {styles.textEnd}>{item.text}</Text>
-                <Image source={item.image} style={{ width: width * .15, height: width * .15, borderRadius: 15, alignSelf: 'center' }}>
-                </Image>
-                </View>
-            </Club>
-            </TouchableOpacity>
-        </View>
-    </View>)
-    }
 }
 
 export default function ClubPage({navigation}) {
+
+    const [modalOpen, setModalOpen] = useState(false);
+
     const [clubs, setClubs] = useState([
-        { text: 'Student Congress', key: '1', color: 'rgb(237, 82, 82)', image: require('./nhs.png') },
-        { text: 'Association for Computing Machinery', key: '2', color: 'rgb(235, 153, 29)', image: require('./nhs.png') },
-        { text: 'Convergent', key: '3', color: 'rgb(40, 160, 21)', image: require('./nhs.png') },
+        { text: 'Student Congress', key: '1', color: '#FF6347', image: require('./nhs.png'), user: 'users' },
+        { text: 'ACM', key: '2', color: '#fed8b1', image: require('./nhs.png'), user: 'user-check' },
+        { text: 'Convergent', key: '3', color: '#ACDDDE', image: require('./nhs.png'),user: 'users' },
     ]);
 
     return (
     <View style = {styles.container}>
-        <View>
-            <View>
-                <FlatList
+        <View style = {{flex: 1}}>
+            <View style = {{flex: 1}}>
+                <Modal visible = {modalOpen}>
+                    <View styles = {styles.modal}>
+                        <Text>Hello</Text>
+                        <Feather onPress = {() => setModalOpen(false)} name = 'users' size = {20} color = 'white'/>
+                    </View>
+                </Modal>
+                <FlatList 
                     data = {clubs}
                     renderItem = {({ item }) => (
                         display({item}, {navigation})
                     )}
                 />
             </View>
+            <Float style = {{ bottom: 90, alignSelf: 'flex-end', marginRight: 80 }}/>
         </View>
     </View>
     );
@@ -67,40 +61,30 @@ export default function ClubPage({navigation}) {
 
 const styles = StyleSheet.create({
     container: {
+        marginTop: 20,
         width: width,
         height: height,
-        backgroundColor: 'white',
+        backgroundColor: 'transparent',
+        borderBottomWidth: 0,
+        flex: 1
     },
     text: {
-        fontSize: 20,
-        paddingLeft: width * .025,
-        textAlignVertical: 'center',
-        flex: 1
-    },
-    textEnd: {
-        fontSize: 20,
-        paddingRight: width * .025,
-        textAlignVertical: 'center',
-        flex: 1
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#094067',
+        marginVertical: 40,
+        flex: 1,
+        paddingRight: -10
+
     },
     component: {
         flexDirection: 'row',
+        alignItems: 'center',
+        marginRight: 20
     },
     card: {
         borderTopLeftRadius: 25,
         borderBottomLeftRadius: 25,
-        elevation: 3,
-        backgroundColor: 'white',
-        shadowOffset: {width: 1, height: 1},
-        shadowColor: '#333',
-        shadowOpacity: 0.3,
-        shadowRadius: 2,
-        marginHorizontal: 4,
-        marginTop: 20,
-        alignSelf: 'flex-end',
-        width: width * .8,
-    },
-    cardEnd: {
         borderTopRightRadius: 25,
         borderBottomRightRadius: 25,
         elevation: 3,
@@ -110,12 +94,15 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 2,
         marginHorizontal: 4,
-        marginTop: 20,
-        alignSelf: 'flex-start',
-        width: width * .8
+        marginBottom: 20,
+        alignSelf: 'center',
+        width: width * .9,
+        height: height * .12
     },
-    cardContent: {
-        marginHorizontal: 18,
-        marginVertical: 10,
+    image: {
+        width: width * .225, 
+        height: width * .225, 
+        borderRadius: 15, 
+        marginHorizontal: 10,
     }
 });

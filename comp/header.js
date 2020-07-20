@@ -11,26 +11,33 @@ export default function Header( {navigation} ) {
         navigation.openDrawer()
     }
     var hours = new Date().getHours();
-    var text = 'Good Morning,'
+    var text = 'Good Morning!'
     if(hours >= 20){
-        text = 'Good Night,'
+        text = 'Good Night!'
     } else if(hours >= 17){
-        text = 'Good Evening,'
+        text = 'Good Evening!'
     } else if(hours >= 12){
-        text = 'Good Afternoon,'
+        text = 'Good Afternoon!'
     }
+
+    var date = new Date().getDate();
+    const monthNames = ["January", "February", "March", "April", "May", "June", 
+    "July", "August", "September", "October", "November", "December"];
+
+    var month = monthNames[new Date().getMonth()];
+    var year = new Date().getFullYear();
 
     return (
         <View style = {{flexDirection: 'row'}}>
             <View style = {style.container}>
                 <Feather name="bar-chart-2" style = {style.button} onPress = {open}/>
-                <View style = {{paddingTop: height/32}}>
-                    <Text style = {style.txt}>Good Afternoon,</Text>
-                    <Text style = {style.txt2}>My Clubs</Text>
+                <View style = {{paddingTop: height/8}}>
+                <Text style = {{paddingLeft: 15, paddingBottom: 5, color: '#90b4ce'}}>{month} {date}, {year}</Text>
+                    <Text style = {style.txt2}>{text}</Text>
                 </View>
             </View>
             <View style = {[{marginLeft: -20}, {marginTop: -20}]}>
-                <Image source = {require('./school-tools.png')} style = {style.image}/>
+                <Image source = {require('./read.png')} style = {style.image}/>
             </View>
         </View>
     );
@@ -38,13 +45,7 @@ export default function Header( {navigation} ) {
 
 const style = StyleSheet.create({
     container: {
-        paddingBottom: 12
-    },
-    txt: {
-        paddingTop: height/ 16,
-        paddingLeft: width/32,
-        fontSize: 18,
-        color: 'white'
+        paddingBottom: 12,
     },
     button: {
         fontSize: 30,
@@ -56,7 +57,8 @@ const style = StyleSheet.create({
         transform: [{ rotate: '90deg' }]
     },
     txt2: {
-        fontSize: 40,
+        fontSize: 26,
+        fontWeight: 'bold',
         paddingLeft: width/32,
         marginTop: - height/128,
         color: 'white'
@@ -64,6 +66,8 @@ const style = StyleSheet.create({
     image: {
         width: width/2,
         height: height/4,
-        resizeMode: 'contain'
+        resizeMode: 'contain',
+        marginTop: -10,
+        marginLeft: 20
     }
 });

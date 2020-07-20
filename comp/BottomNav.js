@@ -84,6 +84,7 @@ const SettingsTabs = createBottomTabNavigator({
             borderBottomRightRadius: 25,
             borderColor: 'white',
             borderTopColor: 'white',
+            paddingHorizontal: 15
             // shadowOffset: {width: 1, height: 1},
             // shadowColor: '#333',
             // shadowOpacity: 0.3,

@@ -37,8 +37,14 @@ const screens = createStackNavigator({
             };
         }
     }
+},
+    {
+        defaultNavigationOptions: {
+            cardStyle: { backgroundColor: '#FFFFFF' },
+        },
+    }
 
-});
+);
 
 screens.navigationOptions = ({ navigation }) => {   
     let tabBarVisible = true;   
