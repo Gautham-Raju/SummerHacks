@@ -25,5 +25,9 @@ urlpatterns = [
     path('allusers/', get_user_list),
     path('register/', v1.register, name="register"),
     path('', include("django.contrib.auth.urls")),
+    #logout
+    path("logout", v1.logout_request, name="logout"),
+    #login
+    path("login", v1.login_request, name="login"),
     #  url(r'^api-auth/', include('rest_framework.urls')),
 ]

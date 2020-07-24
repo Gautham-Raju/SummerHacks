@@ -66,7 +66,7 @@ class Vote(models.Model):
 
 class Candidate(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    #position = models.ForeignKey("Position", blank=True, null=True, on_delete=models.CASCADE)
+    position = models.ForeignKey("Position", blank=True, null=True, on_delete=models.CASCADE)
     votes = models.ManyToManyField(User, related_name= 'candidate_user', blank=True, through=Vote)
     #candidate platform
     bio = models.TextField(max_length=500, blank=True)
@@ -75,11 +75,11 @@ class Position(models.Model):
     election = models.ForeignKey("Election", blank=True, null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=20, blank=True, null=True)
     description = models.TextField(max_length=500, blank=True)
-    candidates = models.ManyToManyField(User, related_name= 'position_user', blank= True, through=Candidate)
+    #candidates = models.ManyToManyField(User, related_name= 'position_user', blank= True, through=Candidate)
 
 class Election(models.Model):
     host = models.ForeignKey(User, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
     starttime = models.DateTimeField()
     endtime = models.DateTimeField()
-    # positions = models.ManyToManyField(Position, related_name= 'election_position', blank= True, through=Position)
+    #positions = models.ManyToManyField(Position, related_name= 'election_position', blank= True, through=Position)
