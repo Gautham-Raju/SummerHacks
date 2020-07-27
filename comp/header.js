@@ -32,11 +32,11 @@ export default function Header( {navigation} ) {
             <View style = {style.container}>
                 <Feather name="bar-chart-2" style = {style.button} onPress = {open}/>
                 <View style = {{paddingTop: height/8}}>
-                <Text style = {{paddingLeft: 15, paddingBottom: 5, color: '#90b4ce'}}>{month} {date}, {year}</Text>
-                    <Text style = {style.txt2}>{text}</Text>
+                <Text style = {{paddingLeft: 15, paddingBottom: 5, color: 'white'}}>{month} {date}, {year}</Text>
+                <Text style = {style.txt2}>{text}</Text>
                 </View>
             </View>
-            <View style = {[{marginLeft: -20}, {marginTop: -20}]}>
+            <View style = {{marginLeft: -20, marginTop: -20, position: 'absolute'}}>
                 <Image source = {require('./read.png')} style = {style.image}/>
             </View>
         </View>
@@ -68,6 +68,6 @@ const style = StyleSheet.create({
         height: height/4,
         resizeMode: 'contain',
         marginTop: -10,
-        marginLeft: 20
+        marginLeft: 180,
     }
 });

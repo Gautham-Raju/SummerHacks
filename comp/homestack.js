@@ -1,26 +1,33 @@
 import ClubPage from './ClubPage';
 import ClubDetails from './ClubDetails';
 import React from 'react';
-import { createStackNavigator } from 'react-navigation-stack';
+import { TransitionPresets, createStackNavigator, CardStyleInterpolators } from 'react-navigation-stack';
 import Header from './header.js'
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import { useNavigationParam, BaseRouter } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window')
 
+
+
 const screens = createStackNavigator({
+    
     Club: {
         screen: ClubPage,
         backgroundColor: 'white',
         navigationOptions: ({navigation}) => {
             return {
                 headerTitle: () => <Header navigation = {navigation}/>,
+                gestureEnabled: true,
+                gestureDirection: 'horizontal',
+                cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
                 headerStyle: {
                     backgroundColor: 'rgb(9, 136, 228)',
                     height: height / 3,
                     borderBottomRightRadius: 40,
                     borderBottomLeftRadius: 40,
                 },
+                cardStyle: {backgroundColor: 'white'}
             }
         }
     },
@@ -30,19 +37,15 @@ const screens = createStackNavigator({
         screen: ClubDetails,
         navigationOptions: ({navigation }) => {
             return {
-                headerStyle: {
-                    backgroundColor: 'rgb(9, 136, 228)',
-                    height: height/10
-                }
+                headerShown: false,
+                gestureEnabled: true,
+                gestureDirection: 'horizontal',
+                cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                cardStyle: {backgroundColor: '#ebf2f8'}
             };
         }
     }
 },
-    {
-        defaultNavigationOptions: {
-            cardStyle: { backgroundColor: '#FFFFFF' },
-        },
-    }
 
 );
 

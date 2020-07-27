@@ -3,6 +3,12 @@ import { Text, View, StyleSheet, Animated, TouchableWithoutFeedback } from 'reac
 import {Feather, Entypo} from '@expo/vector-icons'
 
 export default class float extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.openModal = props.openModal.bind(this)  // DONT FORGET TO BIND
+    }
+
     animation = new Animated.Value(0)
 
     toggleMenu = () => {
@@ -75,7 +81,7 @@ export default class float extends React.Component {
                 </Animated.View>
             </TouchableWithoutFeedback>
 
-            <TouchableWithoutFeedback onPress = {() => setModalOpen(true)}>
+            <TouchableWithoutFeedback onPress = {this.openModal}>
                 <Animated.View style = {[styles.button, styles.second, userStyle, opacity]}>
                     <Feather name = 'users' size = {20} color = 'white'/>
                 </Animated.View>

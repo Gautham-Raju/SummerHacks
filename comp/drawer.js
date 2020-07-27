@@ -72,6 +72,7 @@ const DrawerNavigation = createDrawerNavigator({
         activeBackgroundColor: '#d4ebf2',
         activeTintColor: 'rgba(9, 136, 228, 1.0)',
         inactiveTintColor: '#094067',
+        inactiveBackgroundColor: 'white',
         itemsContainerStyle: {
             marginTop: 16,
             marginHorizontal: 8

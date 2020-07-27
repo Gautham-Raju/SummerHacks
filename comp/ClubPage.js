@@ -1,10 +1,28 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity, Dimensions, Image, Modal } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, Dimensions, Image, Modal, 
+    TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Club from './club'
 import Feather from 'react-native-vector-icons/Feather';
 import Float from './float.js'
+import UserCodeForm from './UserCodeForm.js'
+import GLOBALS from './Global.js'
 
 const { width, height } = Dimensions.get('window')
+
+const colors = JSON.parse(JSON.stringify(GLOBALS.COLOR));
+
+function randomNoRepeats(array) {
+    var copy = array.slice(0);
+    return function() {
+        if (copy.length < 1) { copy = array.slice(0); }
+        var index = Math.floor(Math.random() * copy.length);
+        var item = copy[index];
+        copy.splice(index, 1);
+        return item;
+    };
+    }
+
+    var chooser = randomNoRepeats(colors);
 
 function display({item}, {navigation}){
     const colorStyles = {
@@ -31,20 +49,58 @@ export default function ClubPage({navigation}) {
     const [modalOpen, setModalOpen] = useState(false);
 
     const [clubs, setClubs] = useState([
-        { text: 'Student Congress', key: '1', color: '#FF6347', image: require('./nhs.png'), user: 'users' },
-        { text: 'ACM', key: '2', color: '#fed8b1', image: require('./nhs.png'), user: 'user-check' },
-        { text: 'Convergent', key: '3', color: '#ACDDDE', image: require('./nhs.png'),user: 'users' },
+        { text: 'Student Congress', key: '1', color: '#fe8a71', image: require('./nhs.png'), user: 'users', code: 'AaAa',
+        url: 'https://www.utsg.org/', people: [{person: GLOBALS.PEOPLE[3], position: 'President', key: '0', color: chooser()}, 
+        {person: GLOBALS.PEOPLE[2], position: 'Vice President', key: '1', color: chooser()}, {person: GLOBALS.PEOPLE[1], position: 'Treasurer', key: '2', color: chooser()}, 
+        {person: GLOBALS.PEOPLE[0], position: 'Secretary', key: '3', color: chooser()}]}, 
+        { text: 'ACM', key: '2', color: '#fec8c1', image: require('./nhs.png'), user: 'user-check', code: 'BbBb', url: 'https://www.texasacm.org/'},
+        { text: 'Convergent', key: '3', color: '#adcbe3', image: require('./nhs.png'),user: 'users', code: 'CcCc', url: 'https://www.txconvergent.org/'},
     ]);
+
+    const addClubs = (club) =>{
+        club.key = (clubs.length + 1).toString;
+        club.text = codes[clubs.length].text
+        club.color = codes[clubs.length].color
+        club.image = codes[clubs.length].image
+        club.user = codes[clubs.length].user
+        setClubs((currentClubs) => {
+            return [club, ...currentClubs];
+        });
+        setModalOpen(false);
+    }
+
+    const codes = [{ text: 'Student Congress', key: '1', color: '#FF6347', image: require('./nhs.png'), user: 'users', code: 'AaAa', url: 'https://www.utsg.org/'},
+    { text: 'ACM', key: '2', color: '#fed8b1', image: require('./nhs.png'), user: 'user-check', code: 'BbBb', url: 'https://www.texasacm.org/'},
+    { text: 'Convergent', key: '3', color: '#ACDDDE', image: require('./nhs.png'),user: 'users', code: 'CcCc', url: 'https://www.txconvergent.org/'},
+    { text: 'Freetail Hackers', key: '4', color: '#ACDDDE', image: require('./nhs.png'),user: 'users', code: 'DdDd', url: 'https://freetailhackers.com/'}]
 
     return (
     <View style = {styles.container}>
         <View style = {{flex: 1}}>
             <View style = {{flex: 1}}>
-                <Modal visible = {modalOpen}>
-                    <View styles = {styles.modal}>
-                        <Text>Hello</Text>
-                        <Feather onPress = {() => setModalOpen(false)} name = 'users' size = {20} color = 'white'/>
-                    </View>
+                <Modal visible = {modalOpen}
+                backdropColor = {'white'} backdropOpacity = {1} onBackdropPress={()=>this.closeModal()} 
+                transparent= {true}>
+                    <TouchableWithoutFeedback onPress = {Keyboard.dismiss}>
+                        <View style={{
+                            flex: 1,
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            backgroundColor: '#00000040'}}>
+                            <View style={{
+                                    width: 250,
+                                    height: 200,
+                                    backgroundColor: '#fff', padding: 20, borderRadius: 25}}>
+                                    <Text style = {{color: '#094067'}}>Enter club code to join.</Text>
+                                <UserCodeForm addClubs = {addClubs}/>
+                                <Text onPress = {() => setModalOpen(false)} 
+                                style = {{color: '#094067', fontWeight: 'bold', paddingLeft: 12, paddingTop: 20,}}>
+                                    CANCEL
+                                </Text>
+                            </View>
+                        </View>
+                    </TouchableWithoutFeedback>
                 </Modal>
                 <FlatList 
                     data = {clubs}
@@ -53,7 +109,7 @@ export default function ClubPage({navigation}) {
                     )}
                 />
             </View>
-            <Float style = {{ bottom: 90, alignSelf: 'flex-end', marginRight: 80 }}/>
+            <Float openModal = {() => setModalOpen(true)} style = {{ bottom: 90, alignSelf: 'flex-end', marginRight: 80 }}/>
         </View>
     </View>
     );
@@ -104,5 +160,8 @@ const styles = StyleSheet.create({
         height: width * .225, 
         borderRadius: 15, 
         marginHorizontal: 10,
+    },
+    modal: {
+
     }
 });
