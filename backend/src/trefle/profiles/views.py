@@ -21,7 +21,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 def get_leaders(request):
     if request.method == "GET":
-        leaders_list = Membership.objects.filter(leadership=True)
+        leaders_list = Membership.objects.filter(leadership=True, group__clubtag = '@nana')
         serializer = MembershipSerializer(leaders_list, many=True)
         return JsonResponse(serializer.data, safe=False)
 

@@ -22,7 +22,7 @@ class Profile(models.Model):
     calendar = models.BooleanField(default= True)
 
     def __str__(self):
-        return self.user
+        return self.user.username
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -43,6 +43,9 @@ class Group(models.Model):
         through='Membership',
         through_fields=('group', 'profile')
     )
+
+    def __str__(self):
+        return self.name
 
 class Membership(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
