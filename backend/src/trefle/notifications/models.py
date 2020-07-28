@@ -20,12 +20,12 @@ class Announcement(models.Model):
     publish_start = models.DateTimeField(_("publish_start"), default=timezone.now)
     publish_end = models.DateTimeField(_("publish_end"), blank=True, null=True)
 
-     def __str__(self):
-        return self.title
+def __str__(self):
+    return self.title
 
-     def get_absolute_url(self):
-        return reverse("pinax_announcements:announcement_detail", args=[self.pk])
+def get_absolute_url(self):
+    return reverse("pinax_announcements:announcement_detail", args=[self.pk])
 
-        class Meta:
-        verbose_name = _("announcement")
-        verbose_name_plural = _("announcements")
+class Meta:
+    verbose_name = _("announcement")
+    verbose_name_plural = _("announcements")

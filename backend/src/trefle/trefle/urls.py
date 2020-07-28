@@ -18,6 +18,7 @@ from django.urls import path, include
 
 from users.views import get_user_list
 from register import views as v1
+from profiles.views import get_leaders
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,5 +30,6 @@ urlpatterns = [
     path("logout", v1.logout_request, name="logout"),
     #login
     path("login", v1.login_request, name="login"),
+    path('allleaders/', get_leaders)
     #  url(r'^api-auth/', include('rest_framework.urls')),
 ]
