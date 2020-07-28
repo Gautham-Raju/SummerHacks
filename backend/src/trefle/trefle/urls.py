@@ -26,13 +26,10 @@ urlpatterns = [
     path('allusers/', get_user_list),
     path('register/', v1.register, name="register"),
     path('', include("django.contrib.auth.urls")),
-<<<<<<< HEAD
     #logout
     path("logout", v1.logout_request, name="logout"),
     #login
     path("login", v1.login_request, name="login"),
     path('allleaders/', get_leaders)
-=======
->>>>>>> f770fe0749520f5bedebf9cfa59bf4a7ada9da21
     #  url(r'^api-auth/', include('rest_framework.urls')),
 ]
