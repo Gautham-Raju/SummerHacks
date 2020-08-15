@@ -8,6 +8,7 @@ import Navigator from './comp/drawer'
 const { width, height } = Dimensions.get('window')
 
 export default function App() {
+  console.disableYellowBox = true;
   return(
     <Navigator/>
   );

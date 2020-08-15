@@ -5,15 +5,15 @@ import Feather from 'react-native-vector-icons/Feather';
 import { NavigationHelpersContext } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window')
-const name = 'Bitchass Gauth'
-const email = 'bitchass@gauth.com'
+const name = 'Gautham Raju'
+const email = 'gautham.raju@utexas.edu'
 
 export default SideBar = props => (
     <ScrollView>
         <View
             style = {{ width: undefined, padding: 16, paddingTop: 48, backgroundColor: 'rgb(9, 136, 228)'}}
         >
-            <Image source = {require('./nhs.png')}
+            <Image source = {require('./profile4.jpg')}
             style = {styles.profile}/>
             <Text style = {styles.name}>{name}</Text>
             <View style = {{flexDirection: 'row'}}>

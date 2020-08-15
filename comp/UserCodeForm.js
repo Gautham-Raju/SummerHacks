@@ -21,6 +21,7 @@ export default function UserCodeForm({addClubs}){
                 initialValues = {{code: ''}}
                 validationSchema = {clubSchema}
                 onSubmit = {(values, actions) => {
+                    console.log('hi')
                     actions.resetForm();
                     addClubs(values);
                 }}
@@ -34,7 +35,7 @@ export default function UserCodeForm({addClubs}){
                             {props.touched.code && props.errors.code}
                         </Text>
                         <View style = {{paddingLeft: 105, paddingTop: 85, position: 'absolute'}}>
-                        <TouchableOpacity style={{ height: 50, width: 100, backgroundColor: '#3da9fc'}}>
+                        <TouchableOpacity onPress = {props.handleSubmit} style={{ height: 50, width: 100, backgroundColor: '#3da9fc'}}>
                             <Text style = {{color: 'white', fontSize: 18, fontWeight: 'bold', paddingLeft: 28, paddingTop: 10}}>Join</Text>
                         </TouchableOpacity>
                         </View>

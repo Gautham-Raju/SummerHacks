@@ -1,4 +1,4 @@
-import Election from './Election'
+import HomeStack2 from './homestack2'
 import Calendar from './Calendar'
 import Messaging from './Messaging'
 
@@ -66,8 +66,8 @@ const SettingsTabs = createMaterialBottomTabNavigator({
             barStyle: {backgroundColor: 'white', borderColor: 'white'},
         },
     },
-    Election: {
-        screen: Election,
+    HomeStack2: {
+        screen: HomeStack2,
         navigationOptions: {
             tabBarLabel: "Election",
             tabBarIcon: ({ focused, tintColor }) => (

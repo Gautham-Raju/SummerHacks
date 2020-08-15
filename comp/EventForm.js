@@ -5,8 +5,6 @@ import {Formik} from 'formik';
 import * as yup from 'yup';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
-    const codes = ['AaAa', 'BbBb', 'CcCc', 'DdDd']
-
     const eventSchema = yup.object({
         date: yup.string()
         .required('Date required'),
@@ -36,6 +34,9 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
         };
 
         const handleConfirm = (date) => {
+            const day   = date.getDate();
+            const month = date.getMonth();
+            const year  = date.getFullYear();
         console.warn("A date has been picked: ", date);
         hidePicker();
         };
@@ -97,7 +98,7 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
                             </Text>
 
                             <View style = {{paddingLeft: 105, paddingTop: 395, position: 'absolute'}}>
-                            <TouchableOpacity style={{ height: 50, width: 100, backgroundColor: '#3da9fc'}}>
+                            <TouchableOpacity onPress = {props.handleSubmit} style={{ height: 50, width: 100, backgroundColor: '#3da9fc'}}>
                                 <Text style = {{color: 'white', fontSize: 18, fontWeight: 'bold', paddingLeft: 30, paddingTop: 10}}>Add</Text>
                             </TouchableOpacity>
                             </View>

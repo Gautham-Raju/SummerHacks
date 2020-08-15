@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet, Animated, TouchableWithoutFeedback } from 'react-native';
 import {Feather, Entypo} from '@expo/vector-icons'
+import { LightenDarkenColor } from 'lighten-darken-color'; 
 
 export default class float extends React.Component {
 
@@ -25,7 +26,7 @@ export default class float extends React.Component {
             transform: [
                 {scale: this.animation},
                 {
-                    translateY: this.animation.interpolate({
+                    translateX: this.animation.interpolate({
                         inputRange: [0, 1],
                         outputRange: [0, -80]
                     })
@@ -37,7 +38,7 @@ export default class float extends React.Component {
             transform: [
                 {scale: this.animation},
                 {
-                    translateY: this.animation.interpolate({
+                    translateX: this.animation.interpolate({
                         inputRange: [0, 1],
                         outputRange: [0, -140]
                     })
@@ -49,7 +50,7 @@ export default class float extends React.Component {
             transform: [
                 {scale: this.animation},
                 {
-                    translateY: this.animation.interpolate({
+                    translateX: this.animation.interpolate({
                         inputRange: [0, 1],
                         outputRange: [0, -200]
                     })
@@ -127,8 +128,8 @@ const styles = StyleSheet.create({
         width: 48,
         height: 48,
         borderRadius: 24,
-        marginLeft: 5,
-        backgroundColor: '#90b4ce'
+        marginTop: 5,
+        backgroundColor: LightenDarkenColor('#3da9fc', 20)
     }
 
 })

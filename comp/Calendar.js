@@ -32,16 +32,21 @@ const timeToString = (time) => {
   
   const Schedule: React.FC = () => {
     const [items, setItems] = useState({
-    '2020-07-28': [{startTime: '10:00AM', endTime: '12:00PM',description: 'VOTE!', title: 'Club Elections', color: chooser()}],
-    '2020-07-29': [{startTime: '1:00PM', endTime: '4:00PM',description: "Don't forget bread", title: 'Pick Up Groceries', color: chooser()}],
-    '2020-07-30': [{startTime: '4:00PM', endTime: '12:00AM',description: 'Text about the group project', title: 'Text Allie', color: chooser()}, 
+    '2020-08-17': [{startTime: '10:00AM', endTime: '12:00PM',description: 'VOTE!', title: 'Club Elections', color: chooser()}],
+    '2020-08-15': [{startTime: '1:00PM', endTime: '4:00PM',description: "Don't forget bread", title: 'Pick Up Groceries', color: chooser()}],
+    '2020-08-16': [{startTime: '4:00PM', endTime: '12:00AM',description: 'Text about the group project', title: 'Text Allie', color: chooser()}, 
     {startTime: '1:30PM', endTime: '3:00PM', description: 'Study for Introduction to Computer Science', title: 'Test', color: chooser()}]})
 
   const addEvent = (event) =>{
-    event.key = event.date
+    // event.key = event.date
+    // event.color = chooser()
       setItems((currentEvents) => {
           return [event, ...currentEvents];
       });
+    items.push({
+      key: event.date,
+      value: {startTime: event.startTime, endTime: event.endTime, description: event.description, title: event.title, color: chooser()}
+    })
       setModalOpen(false);
   }
   

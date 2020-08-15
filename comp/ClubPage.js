@@ -49,30 +49,75 @@ export default function ClubPage({navigation}) {
     const [modalOpen, setModalOpen] = useState(false);
 
     const [clubs, setClubs] = useState([
-        { text: 'Student Congress', key: '1', color: '#fe8a71', image: require('./nhs.png'), user: 'users', code: 'AaAa',
+        { text: 'Student Congress', key: '1', color: '#fe8a71', image: require('./ut.png'), user: 'users', code: 'AaAa',
         url: 'https://www.utsg.org/', people: [{person: GLOBALS.PEOPLE[3], position: 'President', key: '0', color: chooser()}, 
         {person: GLOBALS.PEOPLE[2], position: 'Vice President', key: '1', color: chooser()}, {person: GLOBALS.PEOPLE[1], position: 'Treasurer', key: '2', color: chooser()}, 
-        {person: GLOBALS.PEOPLE[0], position: 'Secretary', key: '3', color: chooser()}]}, 
-        { text: 'ACM', key: '2', color: '#fec8c1', image: require('./nhs.png'), user: 'user-check', code: 'BbBb', url: 'https://www.texasacm.org/'},
-        { text: 'Convergent', key: '3', color: '#adcbe3', image: require('./nhs.png'),user: 'users', code: 'CcCc', url: 'https://www.txconvergent.org/'},
+        {person: GLOBALS.PEOPLE[0], position: 'Secretary', key: '3', color: chooser()}], announcements: [{info: 'Welcome to Student Congress', time: 'Aug 11', person: GLOBALS.PEOPLE[1]}], 
+        election: [{info:'hi', started: 'NO', start: '2020-08-18', 
+        positions: [
+            {role: 'President', 
+            qual: ['Must be at least a junior', 'Must be in the club for at least 2 years', 'Application essay required', '3.0 Minimum GPA', 'Willing to commit 6 hours a week'], 
+            spec: ['Ultimately responsible for all aspects of the club', 'Sets direction for the club and events organised',
+        'Run club meetings and should be expected to be the primary contact between the club and outside contacts', 'Delegate tasks and roles to other club members', 'Prepare future execs for their roles']}, 
+            {role: 'Vice President', 
+            qual: ['Must be at least a junior', 'Must be in the club for at least 2 years', 'Application essay required', '3.0 Minimum GPA', 'Willing to commit 6 hours a week'], 
+            spec: ['Support the President who will delegate tasks like publicity or event marketing', 
+        'Can work productively with the President as hostile relations in the executive can be disruptive for the club', 'Set a positive example to other committee members and help maintain morale']}, 
+            {role: 'Treasurer', 
+            qual: ['Attends the club leadership seminar or has experience keeping detailed financial accounts', 'Finance major or 2 years experience in maintaining accounts', 'At least a sophomore'], 
+            spec: ['In charge of club finances and grant applications', 'Record all monetary transactions and keep all receipts for the year']}, 
+            {role: 'Secretary', 
+            qual: ['Must be at least a junior', 'Must be in the club for at least 2 years', 'Application essay required', '3.0 Minimum GPA', 'Willing to commit 6 hours a week'], 
+            spec: ['Notify people of upcoming meetings', 'Take minutes at the meetings', 'Maintain an up to date membership database', 
+        'Maintaining the clubs email and Facebook groups', 'Main point of contact between the committee, executive and club members']}, 
+            {role: 'Committee', 
+            qual: ['Must be at least a sophomore', 'Must be in the club for at least 2 years', 'Application essay required', '3.0 Minimum GPA', 'Willing to commit 6 hours a week'], 
+            spec: ["Advise the president on any subject he may require relating to the duties of each member's respective office", 
+        'Selling tickets to events', 'Organising club shirts and fundraising activities']}, 
+            {role: 'Admin', 
+            qual: ['Must be knowledgeable about Trefle', 'Must be in the club for at least 1 year', 'Application essay required', '3.0 Minimum GPA', 'Willing to commit 2 hours a week'], 
+            spec: ['Tracking club attendance', 'Maintaining club membership lists', 'Keeping members informed through a club newsletter and Trefle', 'Collecting dues']}]}]}, 
+        { text: 'ACM', key: '2', color: '#fec8c1', image: require('./acm.png'), user: 'user-check', code: 'BbBb', url: 'https://www.texasacm.org/', people: [{person: GLOBALS.PEOPLE[3], position: 'President', key: '0', color: chooser()}, 
+        {person: GLOBALS.PEOPLE[2], position: 'Vice President', key: '1', color: chooser()}, {person: GLOBALS.PEOPLE[1], position: 'Treasurer', key: '2', color: chooser()}, 
+        {person: GLOBALS.PEOPLE[0], position: 'Secretary', key: '3', color: chooser()}], announcements: [], 
+        election: [{started: 'N/A'}]},
+        { text: 'Code Orange', key: '3', color: '#adcbe3', image: require('./orange.png'),user: 'users', code: 'CcCc', url: 'http://codeorange.io/', people: [{person: GLOBALS.PEOPLE[3], position: 'President', key: '0', color: chooser()}, 
+        {person: GLOBALS.PEOPLE[2], position: 'Vice President', key: '1', color: chooser()}, {person: GLOBALS.PEOPLE[1], position: 'Treasurer', key: '2', color: chooser()}, 
+        {person: GLOBALS.PEOPLE[0], position: 'Secretary', key: '3', color: chooser()}], announcements: [], 
+        election: [{started: 'YES'}]}
     ]);
 
     const addClubs = (club) =>{
+        console.log('Hi')
         club.key = (clubs.length + 1).toString;
         club.text = codes[clubs.length].text
         club.color = codes[clubs.length].color
         club.image = codes[clubs.length].image
         club.user = codes[clubs.length].user
+        club.code = codes[clubs.length].code
+        club.url = codes[clubs.length].url
+        club.people = codes[clubs.length].people
+        club.announcements = codes[clubs.length].announcements
+        club.election = codes[clubs.length].election
         setClubs((currentClubs) => {
             return [club, ...currentClubs];
         });
         setModalOpen(false);
     }
 
-    const codes = [{ text: 'Student Congress', key: '1', color: '#FF6347', image: require('./nhs.png'), user: 'users', code: 'AaAa', url: 'https://www.utsg.org/'},
-    { text: 'ACM', key: '2', color: '#fed8b1', image: require('./nhs.png'), user: 'user-check', code: 'BbBb', url: 'https://www.texasacm.org/'},
-    { text: 'Convergent', key: '3', color: '#ACDDDE', image: require('./nhs.png'),user: 'users', code: 'CcCc', url: 'https://www.txconvergent.org/'},
-    { text: 'Freetail Hackers', key: '4', color: '#ACDDDE', image: require('./nhs.png'),user: 'users', code: 'DdDd', url: 'https://freetailhackers.com/'}]
+    const codes = [{ text: 'Student Congress', key: '1', color: '#FF6347', image: require('./ut.png'), user: 'users', code: 'AaAa', url: 'https://www.utsg.org/', people: [{person: GLOBALS.PEOPLE[3], position: 'President', key: '0', color: chooser()}, 
+    {person: GLOBALS.PEOPLE[2], position: 'Vice President', key: '1', color: chooser()}, {person: GLOBALS.PEOPLE[1], position: 'Treasurer', key: '2', color: chooser()}, 
+    {person: GLOBALS.PEOPLE[0], position: 'Secretary', key: '3', color: chooser()}], announcements: [{info: 'Welcome to Student Congress', time: 'Aug 11', person: GLOBALS.PEOPLE[1]},
+    {info: 'Welcome to Student Congress', time: 'Aug 11', person: GLOBALS.PEOPLE[1]}], election: [{info:'hi'}]},
+    { text: 'ACM', key: '2', color: '#fed8b1', image: require('./acm.png'), user: 'user-check', code: 'BbBb', url: 'https://www.texasacm.org/', people: [{person: GLOBALS.PEOPLE[3], position: 'President', key: '0', color: chooser()}, 
+    {person: GLOBALS.PEOPLE[2], position: 'Vice President', key: '1', color: chooser()}, {person: GLOBALS.PEOPLE[1], position: 'Treasurer', key: '2', color: chooser()}, 
+    {person: GLOBALS.PEOPLE[0], position: 'Secretary', key: '3', color: chooser()}], announcements: [], election: []},
+    { text: 'Code Orange', key: '3', color: '#ACDDDE', image: require('./orange.png'),user: 'users', code: 'CcCc', url: 'http://codeorange.io/', people: [{person: GLOBALS.PEOPLE[3], position: 'President', key: '0', color: chooser()}, 
+    {person: GLOBALS.PEOPLE[2], position: 'Vice President', key: '1', color: chooser()}, {person: GLOBALS.PEOPLE[1], position: 'Treasurer', key: '2', color: chooser()}, 
+    {person: GLOBALS.PEOPLE[0], position: 'Secretary', key: '3', color: chooser()}], announcements: [], election: []},
+    { text: 'Freetail Hackers', key: '4', color: '#ACDDDE', image: require('./nhs.png'),user: 'users', code: 'DdDd', url: 'https://freetailhackers.com/', people: [{person: GLOBALS.PEOPLE[3], position: 'President', key: '0', color: chooser()}, 
+    {person: GLOBALS.PEOPLE[2], position: 'Vice President', key: '1', color: chooser()}, {person: GLOBALS.PEOPLE[1], position: 'Treasurer', key: '2', color: chooser()}, 
+    {person: GLOBALS.PEOPLE[0], position: 'Secretary', key: '3', color: chooser()}], announcements: [], election: []}]
 
     return (
     <View style = {styles.container}>
@@ -93,6 +138,8 @@ export default function ClubPage({navigation}) {
                                     height: 200,
                                     backgroundColor: '#fff', padding: 20, borderRadius: 25}}>
                                     <Text style = {{color: '#094067'}}>Enter club code to join.</Text>
+                                    <Feather name="users" style = {{
+                                        position: 'absolute', marginLeft: 190, marginTop: 70, fontSize: 18, color: '#d3d3d3'}}/>
                                 <UserCodeForm addClubs = {addClubs}/>
                                 <Text onPress = {() => setModalOpen(false)} 
                                 style = {{color: '#094067', fontWeight: 'bold', paddingLeft: 12, paddingTop: 20,}}>

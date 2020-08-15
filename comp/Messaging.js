@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, Image } from 'react-native';
 
-export default function HelloWorldApp() {
+export default function Messaging() {
     return (
     <View style={{
         flex: 1,
