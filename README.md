@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/king-technologies/Project-Initiator" title="Club Election App SummerHacks">
+  <a href="https://github.com/Gautham-Raju/SummerHacks" title="Club Election App SummerHacks">
   </a>
 </p>
 <h1 align="center">🌟 Club Election App SummerHacks 🌟</h1>
@@ -8,21 +8,30 @@
     <a href="https://devpost.com/software/cyberbullying-detector" title="Project Initiator using Python">🖥️ DevPost</a>
 </p>
 
+## ⭐ Inspiration
+
+We noticed a distinct lack of voter participation at the collegiate level. This is often because potential voters aren't aware of leadership candidates in their respective clubs and sometimes, don't even know when elections are taking place. For candidates, this can be very discouraging and ultimately defeats the purpose of student government. Clubs also face the challenge of member communication, especially with their leaders, as it's very hard to get contact information or even know anything beyond the surface level about these students. Even if a club has all this information present, it can sometimes be tedious finding all this information as it might be buried deep within its website. Keeping track of all the different club elections and candidates can be a pain, and students, more often than not, choose to not get into it in general. Having all this information in one place would greatly increase voter turnout and enthusiasm about elections at the recreational club level, which will hopefully translate to public office elections in the future.
+
 ## 🚀 What it Does
 
-What the cyberbully detector does is it takes text that the user inputs and runs it through an algorithm that we created which consists of metrics and thresholds that the program runs against. We paired up google clouds sentiment analysis with some profanity checkers and some of our own code to create a backend that will detect cyber bullying to the best extent it can.
+Our app displays the current leadership candidates of all the various clubs that a person might be in. It will also display the elections and the candidates in the election, along with an option to actually vote. At its core, it is a platform for voting. However, the application also includes essential utilities, such as an event calendar, announcements, and we plan to implement in-app communication with all of a club's members in the future
 
 ## 💎 How I built it
 
-The way we built the product was by first learning about the documentation and processes that went into Sentiment Analysis on googles cloud platform. From there we went ahead and tried to create our own machine learning model that would detect sentiment and emotion in text as well. After we were able to get that up and running, we decided to pair this up with a profanity checker to make sure that if a user does showcase profane language in the text, we would be able to detect it and make a stronger case that the texts were cyberbullying incidents. We then incorporated Django as our framework as it was a powerful tool that we have used before and had most familiarity with. Finally we decided to create our frontend using HTML and CSS where are able to show the quantities that occur from our threshold and metrics algorithms. We were also able to get the colors to change depending on the mood of the text.
+We used react-native for the front-end and Django with Python for the back-end. We chose Django as it has more documentation than competing back-end technologies such as flask and because it is commonly used in the industry. We used MongoDB for the database and deployed it using an EC2 server.
 
 ## 🤘 Challenges I ran into
 
-The challenges that we ran into was mainly getting started and setting up the frameworks and toolsets. It was our first time working with a lot of these tools so the learning curve was a little bit high but we were able to overcome it and implement the designs to the best of our ability.
+- Learning all the technologies from scratch
+- Connecting different tools in the environment (Front-end and Back-end)
+- Outdated versions in the documentation
+- Time-management
+- Addressing all the complexities of the voting process
 
 ## 🏆 Accomplishments that I'm proud of
 
-My team and I are extremely proud of how we were able to overcome challenges such as creating a machine learning model and not giving up when it seemed bleak. There were times when we thought it was not worth it but thankfully we stuck through and created a great product.
+- Learning the tech stack that we were previously unfamiliar and applying it into a technological service
+- Addressing an issue that we all faced
 
 ## 🦋 Prerequisite
 
@@ -40,13 +49,13 @@ My team and I are extremely proud of how we were able to overcome challenges suc
 1. Clone the repository
 
 ```Bash
-git clone https://github.com/dhruvsethi227/CyberBullyDetection.git
+git clone https://github.com/Gautham-Raju/SummerHacks.git
 ```
 
 2. Change the working directory
 
 ```Bash
-cd CyberBullyDetection
+cd SummerHacks
 ```
 
 ## 👷 Built with
@@ -55,19 +64,21 @@ cd CyberBullyDetection
 
 - [Django](https://www.djangoproject.com/) : Web Framework for Demo
 
-- [GCP](https://cloud.google.com/) : Cloud computing service for NLP
+- [MongoDb](https://www.mongodb.com/) : Document-Oriented Databasing
 
 - [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) : Stylesheet Language
 
 - [HTML5](https://html.com/html5/): Markup Language for display
 
-## 📂 Directory Structure
+- [React-Native](https://reactnative.dev/): Open Source UI platform
 
-> [`create.bat`](https://github.com/king-technologies/Project-Initiator/blob/main/create.bat "Create Command"): Command file that will execute the python file
-> [`remote.py`](https://github.com/king-technologies/Project-Initiator/blob/main/remote.py "Main File"): Python file, the main file that contains the script
 ## 🎊 Future Updates
 
-- [ ] We plan to incorporate for the user to see what part of the text is more emotionally charged in comparison to others and make it a downloadable plugin that works passively in the background like grammarly.
+- [ ] Implement in-app communication
+- [ ] Implement an application form
+- [ ] Implement popular features such as a Dark Mode
+- [ ] Make a corresponding website
+- [ ] Scale this app to encompass public office elections as well as just collegiate ones
 
 ## 🧑🏻 Author
 
